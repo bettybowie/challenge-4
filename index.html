@@ -5,15 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css"/>
-    <title>Time Quiz</title>
+    <title>JavaScript Time Quiz</title>
 </head>
 <body>
+    <!-- banner -->
     <header>
-        <div>
-            <h2>View Highscores</h2>
+        <div id="top-left">
+            <a href=""></a><p>View Highscores</p></a>
         </div>
-        <div>Time</div>
+        <div id="top-right" class="timer">Time: 0</div>
     </header>
+
+    <!-- Display page -->
+    <main>
+        <div class="start-page">
+            <h2>JavaScript Multiple Choice Challenge</h2>
+            <p>Try to answer the following questions about JavaScript within the time limit.</p>
+            <p>Warning: an incorrect answer will be penalized by 15 seconds from your time.</p>
+            <button>Start Quiz</button>
+        </div>
+        <div class="result-page">
+            <h2>All done!</h2>
+            <p>Your final score is</p>
+            <submit>Enter initials:</submit>
+        </div>
+        <div>
+            <h2>Highscores</h2>
+            <div class="highscore-board"></div>
+            <button class="return-page">Go Back</button>
+            <button class="clear-score">Clear Highscores</button>
+        </div>
+    </main>
 
     <script src="./script.js"></script>
 </body>

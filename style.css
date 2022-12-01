@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 1%;
+    width: auto;
+};
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eff5f8;
+};
+
+
+#top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#top-right {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+};
+
