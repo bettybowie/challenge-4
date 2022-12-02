@@ -5,33 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css"/>
-    <title>JavaScript Time Quiz</title>
+    <title>JavaScript Timed Quiz</title>
 </head>
 <body>
     <!-- banner -->
     <header>
-        <div id="top-left">
+        <div>
             <a href=""></a><p>View Highscores</p></a>
         </div>
-        <div id="top-right" class="timer">Time: 0</div>
+        <div class="timer">Time: 0</div>
     </header>
 
     <!-- Display page -->
     <main>
         <div class="start-page">
-            <h2>JavaScript Multiple Choice Challenge</h2>
-            <p>Try to answer the following questions about JavaScript within the time limit.</p>
-            <p>Warning: an incorrect answer will be penalized by 15 seconds from your time.</p>
-            <button>Start Quiz</button>
+            <h2>JavaScript Timed Challenge</h2>
+            <p>Try to answer the following questions about JavaScript within the time limit. Each incorrect answer will be penalized by 15 seconds from your time.</p>
+            <button class="startBtn">Start Quiz</button>
+        </div>
+        <div class="questions-page">
+            <h2 class="questions"></h2>
+            <ul>
+                <li type="button" class="answerBtn" class="a"></li>
+                <li type="button" class="answerBtn" class="b"></li>
+                <li type="button" class="answerBtn" class="c"></li>
+                <li type="button" class="answerBtn" class="d"></li>
+            </ul>
         </div>
         <div class="result-page">
             <h2>All done!</h2>
-            <p>Your final score is</p>
-            <submit>Enter initials:</submit>
+            <p class="finalScore"></p>
+            <form>
+                <label for="initials">Enter your initials:</label>
+                <input type="text" id="initials" name="initials">
+                <input class="button" type="submit" value="Submit">
+            </form>
         </div>
         <div>
             <h2>Highscores</h2>
-            <div class="highscore-board"></div>
+            <ul class="highscoreBoard">
+                <li class="highscoreItem"></li>
+            </ul>
             <button class="return-page">Go Back</button>
             <button class="clear-score">Clear Highscores</button>
         </div>
