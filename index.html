@@ -23,11 +23,11 @@
             <p>Try to answer the following questions about JavaScript within the time limit. Each incorrect answer will be penalized by 15 seconds from your time.</p>
             <button class="startBtn">Start Quiz</button>
         </div>
-        <div class="questions-page" data-state="hidden">
+        <div class="question-page hidden">
             <h2 class="questionIs"></h2>
             <div class="answer-choices"></div>
         </div>
-        <div class="result-page" hidden="until-found">
+        <div class="result-page hidden">
             <h2>All done!</h2>
             <p class="finalScore"></p>
             <form>
@@ -36,13 +36,11 @@
                 <input class="button initialSubmit" type="submit" value="Submit">
             </form>
         </div>
-        <div classs="highscore-page" hidden="until-found">
+        <div class="highscore-page hidden">
             <h2>Highscores</h2>
-            <ul class="highscoreBoard">
-                <li class="highscoreItem"></li>
-            </ul>
-            <button class="return-page">Go Back</button>
-            <button class="clear-score">Clear Highscores</button>
+            <div class="highscoreBoard"></div>
+            <div class="return-page"></div>
+            <div class="clear-score"></div>
         </div>
     </main>
 

@@ -1,8 +1,8 @@
 // Declare variables
 var startPg = document.querySelector(".start-page");
-var startBtn = document.querySelector("startBtn");
+var startBtn = document.querySelector(".startBtn");
 var timerElement = document.querySelector(".timer");
-var questions = [
+var questionBank = [
     {question: "Inside which HTML element do we put the JavaScript?", 
     choices:["<scripting>", "<javascript>", "<js>", "<script>"], 
     correctAnswer:"<script>"},
@@ -40,45 +40,52 @@ var questionPg = document.querySelector(".question-page");
 var resultPg = document.querySelector(".result-page");
 var finalScoreElement = document.querySelector(".finalScore");
 var initialInput = document.getElementById("initials");
-var initialSubmitBtn = document.querySelector("initialSubmit");
-var highscorePg = document.querySelector("highscore-page");
-var highscoreBoard = document.querySelector("highscoreBoard");
-var highscoreItem = document.querySelector("highscoreItem");
-var returnBtn = document.querySelector("return-page");
-var clearBtn = document.querySelector("clear-score");
+var initialSubmitBtn = document.querySelector(".initialSubmit");
+var highscorePg = document.querySelector(".highscore-page");
+var highscoreBoard = document.querySelector(".highscoreBoard");
+var highscoreItem = document.querySelector(".highscoreItem");
+var returnBtn = document.querySelector(".return-page");
+var clearBtn = document.querySelector(".clear-score");
 
 
 
 // function to display the  questions
-function nextQuestion() {
-    var questionIndex = -1;
-    questionPg.innerHTML = '';
-    ++questionIndex;
-    questionIs.write(questions[questionIndex].question + "<br/>");
-
-    for ( var i = 0; i < questions[questionIndex].choices.length; i++) {
-        answerBtn.write(questions[questionIndex].choices[i] + "<br/>");
-    };
-
-    
+function startQuestion() {
+    var questionIndex = 0;
+    questionIndex++;
+    var currentQues = questionBank[questionIndex];
+    questionIs.textContent =currentQues;
+    answerBtn.innerHTML = ""; 
+    questionBank.forEach((choice, i) => {
+        var choiceBtn = document.createElement("button");
+        choiceBtn.setAttribute("value", choice);
+        choiceBtn.textContent = i + choice;
+        choiceBtn.onclick = questionClick;
+        answerBtn.appendChild(choiceBtn);
+    });
 }
 
+
+
 // start quiz button to start the challenge
-
-
-
-introPage()
+startBtn.addEventListener("click", function(event){
+    event.preventDefault();
+    startPg.style.display = "none";
+    startTimer();
+    questionPg.style.display = "flex";
+    startQuestion();
+})
 
 // function to start and stop the timer
 function startTimer() {
     var timeLeft = 80;
 
     var timer = setInterval(function() {
-        if (timeLeft > 1) {
+        if (timeLeft >= 1) {
             timerElement.textContent = 'Time: ' + timeLeft;
             timeLeft--;
         } else {
-            timerElement.textContent = '';
+            timerElement.textContent = 'Time out!';
             clearInterval(timer);
         };
     }, 1000);
@@ -86,15 +93,17 @@ function startTimer() {
 
 
 
-// start button --> game start
+
 // game start--> timer on, question display
-// correct answer vs wrong answer
-// wrong answer minus 15 seconds
+// correct answer vs wrong answer 
+    // if correct display display correct! 
+    // if wrong display wrong
+        // minus 15 seconds
 // keep track of points
 // timer stop when no more questions
 // questions stop when timer stops
 // when done jump to result page
-// add initial to highscore 
+// add initial to highscore local storage
 // clear highscore
 // link to highscore
 // back to game
