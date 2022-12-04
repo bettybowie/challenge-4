@@ -64,7 +64,6 @@ var initialInput = document.getElementById("initials");
 var initialSubmitBtn = document.querySelector(".initialSubmit");
 var highscorePg = document.querySelector(".highscore-page");
 var highscoreBoard = document.querySelector(".highscoreBoard");
-var highscoreItem = document.querySelector(".highscoreItem");
 var returnBtn = document.querySelector(".return-page");
 var clearBtn = document.querySelector(".clear-score");
 var questionIndex = -1;
@@ -137,7 +136,16 @@ initialSubmitBtn.addEventListener("click", function(e) {
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
     
+        var highscoreItem = JSON.parse(localStorage.getItem("highscoreStore"));
+ 
+        var li = document.createElement("ol");
+        li.textContent = highscoreBoard.innerHTML = highscoreStore.player + "---" + highscoreStore.score;
+        li.appendChild(ol);
+    
 })
+
+
+
 
 // start quiz button to start the challenge
 startBtn.addEventListener("click", function(e){
@@ -162,12 +170,17 @@ function startTimer() {
     }, 1000);
 }
 
+clearBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    highscoreBoard.innerHTML = "";
+})
 
+returnBtn.addEventListener("click", function(e) {
+    e.preventDefault();
 
-
+})
 
 
 // add to highscore
-// clear highscore
 // link to highscore
 // back to game
