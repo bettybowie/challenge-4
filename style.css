@@ -21,11 +21,13 @@ main {
 
 h2 {
     padding: 20px;
+    font-size: 30px;
 }
 
 button, .button {
     background-color: #76b5c5;
-    margin: 10px;
+    margin: 15px;
+    padding: 5px;
 }
 
 button:hover, .button:hover {
@@ -43,4 +45,20 @@ header p {
 
 .hidden {
     display: none;
+}
+
+.answer-choices button {
+    display: block;
+    width: auto;
+    font-size: 25px;
+}
+
+.correct-wrong {
+    font-size: 25px;
+    color: #154c79;
+    font-weight: bold;
+}
+
+.question-page {
+    position: relative;
 }

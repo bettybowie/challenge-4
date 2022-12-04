@@ -24,14 +24,15 @@
             <button class="startBtn">Start Quiz</button>
         </div>
         <div class="question-page hidden">
-            <h2 class="questionIs"></h2>
-            <div class="answer-choices"></div>
+            <h2 id="Is" class="questionIs"></h2> <br/>
+            <div id="answers" class="answer-choices"></div>
+            <div class="correct-wrong"></div>
         </div>
         <div class="result-page hidden">
             <h2>All done!</h2>
             <p class="finalScore"></p>
             <form>
-                <label for="initials">Enter your initials:</label>
+                <label for="initials">Enter your initials to save results:</label>
                 <input type="text" id="initials" name="initials">
                 <input class="button initialSubmit" type="submit" value="Submit">
             </form>
