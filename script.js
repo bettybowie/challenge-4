@@ -139,18 +139,30 @@ initialSubmitBtn.addEventListener("click", function(e) {
         storageList.push(highscoreStore);
     } else {
         storageList = [highscoreStore];
-    }
-    localStorage.setItem(storageList);
+    };
+    // localStorage.setItem(storageList);
+    localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
     initialInput.value = "";
 
-    for (var i = 0; i < storageList.length; i++) {
-        var scores = document.querySelector(".scores");
+    var storageListAdd = JSON.parse(localStorage.getItem(highscoreStore));
+    
+    storageListAdd.sort((a, b) => b.score - a.score);
+
+    storageListAdd.forEach(function() {
         var li = document.createElement("li");
-        li.textContent = storageList[i].player + "---" + storageList[i].score;
+        li.textContent = storageListAdd[i].player + "---" + storageListAdd[i].score;
+        var scores = document.querySelector(".scores");
         scores.appendChild(li);
-    }
+    });
+    // for (var i = 0; i < storageList.length; i++) {
+    //     var scores = document.querySelector(".scores");
+    //     var li = document.createElement("li");
+    //     li.textContent = storageList[i].player + "---" + storageList[i].score;
+    //     scores.appendChild(li);
+    // }
+
 })
 
 
