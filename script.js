@@ -117,9 +117,9 @@ function scores() {
 }
 
 
-
 // shows results page 
 function quizEnd() {
+    clearInterval(timer);
     questionPg.style.display = "none";
     resultPg.style.display = "block";
     scores();
@@ -136,11 +136,14 @@ initialSubmitBtn.addEventListener("click", function(e) {
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
     
-        var highscoreItem = JSON.parse(localStorage.getItem("highscoreStore"));
+    var highscoreItem = JSON.parse(localStorage.getItem("highscoreStore"));
  
-        var li = document.createElement("ol");
-        li.textContent = highscoreBoard.innerHTML = highscoreStore.player + "---" + highscoreStore.score;
-        li.appendChild(ol);
+    for (var i = 0; i < highscoreStore.length; i++) {
+        var scores = highscoreStore[i].player + "---" + highscoreStore[i].score;
+        var li = document.querySelector(".scores");
+        li.textContent = scores;
+        li.appendChild(li);
+    }
     
 })
 
@@ -158,7 +161,7 @@ startBtn.addEventListener("click", function(e){
 
 // function to start and stop the timer
 function startTimer() {
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
         if (timeLeft >= 1) {
             timerElement.textContent = 'Time: ' + timeLeft;
             timeLeft--;
@@ -175,12 +178,17 @@ clearBtn.addEventListener("click", function(e) {
     highscoreBoard.innerHTML = "";
 })
 
-returnBtn.addEventListener("click", function(e) {
-    e.preventDefault();
+// returnBtn.addEventListener("click", function(e) {
+//     e.preventDefault();
+//     startPage();
+// })
 
-})
-
-
+// function startPage() {
+//     startPg.style.display = "block";
+//     questionPg.style.display = "hidden";
+//     resultPg.style.display = "hidden";
+//     highscorePg.style.display = "hidden";
+// }
 // add to highscore
 // link to highscore
 // back to game
