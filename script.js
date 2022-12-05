@@ -71,15 +71,18 @@ var timeLeft = 80;
 var feedback = document.querySelector(".correct-wrong");
 var timer;
 var scoreCounter = 0;
+var HighscoresBtn = document.querySelector('.Highscores');
 
 // function to display the  questions
 function startQuestion() {
     questionIndex++;
+    feedback.innerHTML = "";
     var currentQues = questionBank[questionIndex].question;
     questionIs.innerHTML =currentQues;
+    var answerDiv = document.getElementById("answers");
+    answerDiv.innerHTML = "";
     questionBank[questionIndex].choices.forEach((currentQues) => {
         var currentChoices = currentQues;
-        var answerDiv = document.getElementById("answers");
         answerBtn = document.createElement("button");
         answerBtn.innerHTML = currentChoices; 
         answerDiv.appendChild(answerBtn);
@@ -184,27 +187,31 @@ function startTimer() {
     }, 1000);
 }
 
+// function to clear score
 clearBtn.addEventListener("click", function(e) {
     e.preventDefault();
     highscoreBoard.innerHTML = "";
 })
 
+// function to retake the quiz
 returnBtn.addEventListener("click", function(e) {
     e.preventDefault();
-    initialPage();
-})
-
-function initialPage() {
     clearTimeout(timer);
+    scoreCounter = 0;
     timeLeft = 80;
     questionIndex = -1;
     startPg.style.display = "block";
     questionPg.style.display = "none";
     resultPg.style.display = "none";
     highscorePg.style.display = "none";
+})
 
-}
+// function to view highscores
+HighscoresBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    startPg.style.display = "none";
+    questionPg.style.display = "none";
+    resultPg.style.display = "none"
+    highscorePg.style.display = "block";
+})
 
-
-// add to highscore
-// link to highscore
