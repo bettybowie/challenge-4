@@ -32,6 +32,7 @@ button, .button {
 
 button:hover, .button:hover {
     background-color: #154c79;
+    cursor: pointer;
 }
 
 header p {
@@ -39,6 +40,11 @@ header p {
 }
 
 /* Class selector */
+.timer {
+    padding: 20px;
+    font-size: 20px;
+}
+
 .startBtn {
     padding: 10px;
 }
@@ -61,4 +67,17 @@ header p {
 
 .question-page {
     position: relative;
+}
+
+/* Id selector */
+#hsbtn {
+    border: none;
+    background-color: #eff5f8;
+    color: #76b5c5;
+    font-size: 20px;
+}
+
+#hsbtn:hover {
+    color: #154c79;
+    cursor: pointer;
 }

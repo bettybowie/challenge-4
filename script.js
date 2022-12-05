@@ -1,7 +1,4 @@
 // Declare variables
-var startPg = document.querySelector(".start-page");
-var startBtn = document.querySelector(".startBtn");
-var timerElement = document.querySelector(".timer");
 var questionBank = [
     {
         question: "Inside which HTML element do we put the JavaScript?", 
@@ -54,7 +51,9 @@ var questionBank = [
         correctAnswer: "if(i==5)"
     },
 ];
-
+var startPg = document.querySelector(".start-page");
+var startBtn = document.querySelector(".startBtn");
+var timerElement = document.querySelector(".timer");
 var answerBtn = document.querySelector(".answer-choices");
 var questionIs = document.querySelector(".questionIs");
 var questionPg = document.querySelector(".question-page");
@@ -73,7 +72,7 @@ var timer;
 var scoreCounter = 0;
 var HighscoresBtn = document.querySelector('.Highscores');
 
-// function to display the  questions
+// function to display the questions
 function startQuestion() {
     questionIndex++;
     feedback.innerHTML = "";
@@ -135,33 +134,24 @@ initialSubmitBtn.addEventListener("click", function(e) {
         player: initialInput.value.trim(),
         score: scoreCounter
     }
-    localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
+    var storageList = localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
+    if(storageList) {
+        storageList.push(highscoreStore);
+    } else {
+        storageList = [highscoreStore];
+    }
+    localStorage.setItem(storageList);
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
     initialInput.value = "";
-    
-    var highscoreItem = JSON.parse(localStorage.getItem("highscoreStore"));
- 
-    for (var i = 0; i < highscoreStore.length; i++) {
+
+    for (var i = 0; i < storageList.length; i++) {
         var scores = document.querySelector(".scores");
-        scores.innerHTML = highscoreStore[i].player + "---" + highscoreStore[i].score;
         var li = document.createElement("li");
-        li.textContent = scores.innerHTML;
-        scores.innerHTML.appendChild(li);
+        li.textContent = storageList[i].player + "---" + storageList[i].score;
+        scores.appendChild(li);
     }
-
-    highscoreBoard.innerHTML = highscoreStore.player + "---" + highscoreStore.score;
-    
-    // for (var i = 0; i < highscoreStore.length; i++) {
-    //     var scores = highscoreStore[i].player + "---" + highscoreStore[i].score;
-    //     var li = document.querySelector(".scores");
-    //     li.textContent = scores;
-    //     li.appendChild(li);
-    // }
-    
 })
-
-
 
 
 // start quiz button to start the challenge
