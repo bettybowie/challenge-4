@@ -73,10 +73,10 @@ var scoreCounter = 0;
 var HighscoresBtn = document.querySelector('.Highscores');
 var scores = document.querySelector(".scores");
 
+
 // function to display the questions
 function startQuestion() {
     questionIndex++;
-    feedback.innerHTML = "";
     var currentQues = questionBank[questionIndex].question;
     questionIs.innerHTML =currentQues;
     var answerDiv = document.getElementById("answers");
@@ -113,7 +113,6 @@ function answerClicked(e) {
     }
 }
 
-
 // track scores
 function finScores() {
     finalScoreElement.innerHTML = "Your final score is " + scoreCounter;
@@ -135,34 +134,19 @@ initialSubmitBtn.addEventListener("click", function(e) {
         player: initialInput.value.trim(),
         score: scoreCounter
     }
-    var storageList = localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
-    if(storageList) {
-        storageList.push(highscoreStore);
-    } else {
-        storageList = [highscoreStore];
-    };
-  
-    localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
+    var storageList = localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore)) || [];
+    storageList.push(highscoreStore);
+
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
     initialInput.value = "";
-    
-    // storageList.sort(function(a,b) {
-    //     return b.score - a.score
-    // });
-
-    storageList.sort((a,b) => b-a);
 
     for (var i = 0; i < storageList.length; i++) {
         var li = document.createElement("li");
         li.textContent = storageList[i].player + "--------" + storageList[i].score;
         scores.appendChild(li);
-    }
-
-
-    
+    };
 })
-
 
 // start quiz button to start the challenge
 startBtn.addEventListener("click", function(e){
@@ -200,6 +184,7 @@ returnBtn.addEventListener("click", function(e) {
     scoreCounter = 0;
     timeLeft = 80;
     questionIndex = -1;
+    feedback.innerHTML = "";
     startPg.style.display = "block";
     questionPg.style.display = "none";
     resultPg.style.display = "none";
