@@ -71,6 +71,7 @@ var feedback = document.querySelector(".correct-wrong");
 var timer;
 var scoreCounter = 0;
 var HighscoresBtn = document.querySelector('.Highscores');
+var scores = document.querySelector(".scores");
 
 // function to display the questions
 function startQuestion() {
@@ -114,7 +115,7 @@ function answerClicked(e) {
 
 
 // track scores
-function scores() {
+function finScores() {
     finalScoreElement.innerHTML = "Your final score is " + scoreCounter;
 }
 
@@ -124,7 +125,7 @@ function quizEnd() {
     clearInterval(timer);
     questionPg.style.display = "none";
     resultPg.style.display = "block";
-    scores();
+    finScores();
 }
 
 // submit initials to highscore board
@@ -140,29 +141,26 @@ initialSubmitBtn.addEventListener("click", function(e) {
     } else {
         storageList = [highscoreStore];
     };
-    // localStorage.setItem(storageList);
+  
     localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
     initialInput.value = "";
-
-    var storageListAdd = JSON.parse(localStorage.getItem(highscoreStore));
     
-    storageListAdd.sort((a, b) => b.score - a.score);
+    // storageList.sort(function(a,b) {
+    //     return b.score - a.score
+    // });
 
-    storageListAdd.forEach(function() {
+    storageList.sort((a,b) => b-a);
+
+    for (var i = 0; i < storageList.length; i++) {
         var li = document.createElement("li");
-        li.textContent = storageListAdd[i].player + "---" + storageListAdd[i].score;
-        var scores = document.querySelector(".scores");
+        li.textContent = storageList[i].player + "--------" + storageList[i].score;
         scores.appendChild(li);
-    });
-    // for (var i = 0; i < storageList.length; i++) {
-    //     var scores = document.querySelector(".scores");
-    //     var li = document.createElement("li");
-    //     li.textContent = storageList[i].player + "---" + storageList[i].score;
-    //     scores.appendChild(li);
-    // }
+    }
 
+
+    
 })
 
 
@@ -192,7 +190,7 @@ function startTimer() {
 // function to clear score
 clearBtn.addEventListener("click", function(e) {
     e.preventDefault();
-    highscoreBoard.innerHTML = "";
+    scores.innerHTML = "";
 })
 
 // function to retake the quiz
