@@ -73,6 +73,14 @@ var scoreCounter = 0;
 var HighscoresBtn = document.querySelector('.Highscores');
 var scores = document.querySelector(".scores");
 
+// start quiz button to start the challenge
+startBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    startPg.style.display = "none";
+    startTimer();
+    questionPg.style.display = "block";
+    startQuestion();
+})
 
 // function to display the questions
 function startQuestion() {
@@ -88,6 +96,20 @@ function startQuestion() {
         answerDiv.appendChild(answerBtn);
         answerBtn.onclick = answerClicked;
     });
+}
+
+// function to start and stop the timer
+function startTimer() {
+    timer = setInterval(function() {
+        if (timeLeft >= 1) {
+            timerElement.textContent = 'Time: ' + timeLeft;
+            timeLeft--;
+        } else {
+            timerElement.textContent = 'Time out!';
+            clearInterval(timer);
+            quizEnd();
+        };
+    }, 1000);
 }
 
 // series of event when answer is selected
@@ -118,7 +140,6 @@ function finScores() {
     finalScoreElement.innerHTML = "Your final score is " + scoreCounter;
 }
 
-
 // shows results page 
 function quizEnd() {
     clearInterval(timer);
@@ -147,29 +168,6 @@ initialSubmitBtn.addEventListener("click", function(e) {
         scores.appendChild(li);
     };
 })
-
-// start quiz button to start the challenge
-startBtn.addEventListener("click", function(e){
-    e.preventDefault();
-    startPg.style.display = "none";
-    startTimer();
-    questionPg.style.display = "block";
-    startQuestion();
-})
-
-// function to start and stop the timer
-function startTimer() {
-    timer = setInterval(function() {
-        if (timeLeft >= 1) {
-            timerElement.textContent = 'Time: ' + timeLeft;
-            timeLeft--;
-        } else {
-            timerElement.textContent = 'Time out!';
-            clearInterval(timer);
-            quizEnd();
-        };
-    }, 1000);
-}
 
 // function to clear score
 clearBtn.addEventListener("click", function(e) {
