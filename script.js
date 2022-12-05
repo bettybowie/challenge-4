@@ -135,15 +135,26 @@ initialSubmitBtn.addEventListener("click", function(e) {
     localStorage.setItem("highscoreStore", JSON.stringify(highscoreStore));
     resultPg.style.display = "none";
     highscorePg.style.display = "block";
+    initialInput.value = "";
     
     var highscoreItem = JSON.parse(localStorage.getItem("highscoreStore"));
  
     for (var i = 0; i < highscoreStore.length; i++) {
-        var scores = highscoreStore[i].player + "---" + highscoreStore[i].score;
-        var li = document.querySelector(".scores");
-        li.textContent = scores;
-        li.appendChild(li);
+        var scores = document.querySelector(".scores");
+        scores.innerHTML = highscoreStore[i].player + "---" + highscoreStore[i].score;
+        var li = document.createElement("li");
+        li.textContent = scores.innerHTML;
+        scores.innerHTML.appendChild(li);
     }
+
+    highscoreBoard.innerHTML = highscoreStore.player + "---" + highscoreStore.score;
+    
+    // for (var i = 0; i < highscoreStore.length; i++) {
+    //     var scores = highscoreStore[i].player + "---" + highscoreStore[i].score;
+    //     var li = document.querySelector(".scores");
+    //     li.textContent = scores;
+    //     li.appendChild(li);
+    // }
     
 })
 
@@ -178,17 +189,22 @@ clearBtn.addEventListener("click", function(e) {
     highscoreBoard.innerHTML = "";
 })
 
-// returnBtn.addEventListener("click", function(e) {
-//     e.preventDefault();
-//     startPage();
-// })
+returnBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    initialPage();
+})
 
-// function startPage() {
-//     startPg.style.display = "block";
-//     questionPg.style.display = "hidden";
-//     resultPg.style.display = "hidden";
-//     highscorePg.style.display = "hidden";
-// }
+function initialPage() {
+    clearTimeout(timer);
+    timeLeft = 80;
+    questionIndex = -1;
+    startPg.style.display = "block";
+    questionPg.style.display = "none";
+    resultPg.style.display = "none";
+    highscorePg.style.display = "none";
+
+}
+
+
 // add to highscore
 // link to highscore
-// back to game
