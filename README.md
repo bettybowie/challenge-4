@@ -25,9 +25,9 @@ From the high scores page, the user can choose to return to the game or clear al
 
 ## Links
 
-Solution URL: [https://github.com/bettybowie/challenge-4]
+Solution URL: [https://github.com/bettybowie/timedQuiz]
 
-Live URL: [https://bettybowie.github.io/challenge-4/]
+Live URL: [https://bettybowie.github.io/timedQuiz/]
 
 ## License
 
